@@ -77,11 +77,11 @@ class FileStorage (Storage):
 
     def end(self, handle_invalidations=None):
         self.shelf.store(iteritems(self.pending_records))
-        if is_logging(20):
+        if is_logging(10):
             shelf_file = self.shelf.get_file()
             shelf_file.seek_end()
             pos = shelf_file.tell()
-            log(20, "Transaction at [%s] end=%s" % (datetime.now(), pos))
+            log(10, "Transaction at [%s] end=%s" % (datetime.now(), pos))
         if self.pack_extra is not None:
             self.pack_extra.update(self.pending_records)
         self.allocated_unused_oids -= set(self.pending_records)
